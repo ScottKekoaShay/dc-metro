@@ -6,7 +6,7 @@ config = {
 	#########################
 
 	# WIFI Network SSID
-	'wifi_ssid': '<Your 2.4ghz WiFi SSID>',
+	'wifi_ssid': '<Your 2.4ghz WiFi SSID>'',
 
 	# WIFI Password
 	'wifi_password': '<Your WiFi Password>',
@@ -18,8 +18,10 @@ config = {
 	# Metro Station Code
 	'metro_station_code': 'D02',
 
-	# Metro Train Group
-	'train_group': '2',
+	# Metro Train Groups
+    # If you only want 1 group to show up, use that code for both train_group_1 and train_group_2
+	'train_group_1': '1',
+    'train_group_2': '2',
 
 	# API Key for WMATA
 	'metro_api_key': '<Your WMATA API Key>',
@@ -32,7 +34,7 @@ config = {
 	'metro_api_url': 'https://api.wmata.com/StationPrediction.svc/json/GetPrediction/',
 	'metro_api_retries': 2,
 	'refresh_interval': 5, # 5 seconds is a good middle ground for updates, as the processor takes its sweet ol time
-
+	
 	# Display Settings
 	'matrix_width': 64,
 	'num_trains': 3,

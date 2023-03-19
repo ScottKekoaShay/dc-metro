@@ -1,4 +1,6 @@
 import board
+import digitalio
+import time
 from adafruit_matrixportal.network import Network
 
 from config import config
@@ -35,7 +37,7 @@ class MetroApi:
                 return MetroApi._fetch_train_predictions(station_code, group, retry_attempt + 1)
             else:
                 raise MetroApiOnFireException()
-    
+
     def _normalize_train_response(train: dict) -> dict:
         line = train['Line']
         destination = train['Destination']
@@ -49,7 +51,7 @@ class MetroApi:
             'destination': destination,
             'arrival': arrival
         }
-    
+
     def _get_line_color(line: str) -> int:
         if line == 'RD':
             return 0xFF0000

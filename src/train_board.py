@@ -2,9 +2,9 @@ import displayio
 from adafruit_display_shapes.rect import Rect
 from adafruit_display_text.label import Label
 from adafruit_matrixportal.matrix import Matrix
+from adafruit_display_text import LabelBase
 
 from config import config
-
 
 class TrainBoard:
 	"""
@@ -23,9 +23,9 @@ class TrainBoard:
 		
 		self.display = Matrix().display
 
-		self.parent_group = displayio.Group(max_size=5)
+		self.parent_group = displayio.Group()
 
-		self.heading_label = Label(config['font'], max_glyphs=len(config['heading_text']), anchor_point=(0,0))
+		self.heading_label = Label(config['font'], anchor_point=(0,0), anchored_position=(.5,.5))
 		self.heading_label.color = config['heading_color']
 		self.heading_label.text=config['heading_text']
 		self.parent_group.append(self.heading_label)
@@ -68,19 +68,19 @@ class Train:
 
 		self.line_rect = Rect(0, y, config['train_line_width'], config['train_line_height'], fill=config['loading_line_color'])
 		
-		self.destination_label = Label(config['font'], max_glyphs=config['destination_max_characters'], anchor_point=(0,0))
+		self.destination_label = Label(config['font'], anchor_point=(0,0))
 		self.destination_label.x =  config['train_line_width'] + 2
-		self.destination_label.y = y
+		self.destination_label.y = y + int((config['train_line_height'])/2)
 		self.destination_label.color = config['text_color']
 		self.destination_label.text = config['loading_destination_text'][:config['destination_max_characters']]
 
-		self.min_label = Label(config['font'], max_glyphs=config['min_label_characters'], anchor_point=(0,0))
+		self.min_label = Label(config['font'], anchor_point=(0,0))
 		self.min_label.x = config['matrix_width'] - (config['min_label_characters'] * config['character_width']) + 1
-		self.min_label.y = y
+		self.min_label.y = y + int((config['train_line_height'])/2)
 		self.min_label.color = config['text_color']
 		self.min_label.text = config['loading_min_text']
 
-		self.group = displayio.Group(max_size=3)
+		self.group = displayio.Group()
 		self.group.append(self.line_rect)
 		self.group.append(self.destination_label)
 		self.group.append(self.min_label)
